@@ -1,0 +1,11 @@
+customer_id,name,email,age,gender,purchase_amount,purchase_date,category,last_login,signup_date,country,city
+1,John Smith,john.smith@email.com,32,M,299.99,2024-01-15,Electronics,2024-01-20,2023-06-01,USA,New York
+2,Maria Garcia,maria.garcia@email.com,28,F,150.50,2024-01-18,Clothing,2024-01-19,2023-07-15,Spain,Madrid
+3,David Johnson,david.j@email.com,45,M,750.00,2024-01-20,Electronics,2024-01-21,2023-05-20,Canada,Toronto
+4,Sarah Wilson,sarah.w@email.com,35,F,89.99,2024-01-22,Books,2024-01-23,2023-08-10,UK,London
+5,Michael Brown,m.brown@email.com,29,M,420.75,2024-01-25,Sports,2024-01-26,2023-09-05,USA,California
+6,Emily Davis,emily.davis@email.com,26,F,199.99,2024-01-28,Beauty,2024-01-29,2023-10-12,Australia,Sydney
+7,Robert Miller,r.miller@email.com,38,M,599.99,2024-02-01,Electronics,2024-02-02,2023-04-18,Germany,Berlin
+8,Lisa Anderson,lisa.a@email.com,31,F,125.00,2024-02-03,Clothing,2024-02-04,2023-11-22,France,Paris
+9,James Taylor,j.taylor@email.com,42,M,899.99,2024-02-05,Home,2024-02-06,2023-03-30,USA,Texas
+10,Jennifer White,jen.white@email.com,27,F,67.50,2024-02-08,Books,2024-02-09,2023-12-01,UK,Manchester
