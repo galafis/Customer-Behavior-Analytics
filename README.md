@@ -1,32 +1,35 @@
 # Customer Behavior Analytics
-
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Sistema avançado de análise de comportamento do cliente com funcionalidades abrangentes e stack tecnológico moderno. Oferece múltiplas linguagens de programação, interfaces web interativas e capacidades de análise avançadas para soluções de nível profissional.
+Sistema avançado de análise de comportamento do cliente com funcionalidades abrangentes e stack tecnológico moderno. Oferece múltiplas linguagens de programação, interfaces web interativas, API RESTful completa e capacidades de análise avançadas para soluções de nível profissional.
 
 ## 🎯 Visão Geral
 
-Este projeto demonstra a implementação de um sistema completo de análise de comportamento do cliente, integrando análise estatística em R, processamento de dados em Python e interface web moderna com JavaScript.
+Este projeto demonstra a implementação de um sistema completo de análise de comportamento do cliente, integrando análise estatística em R, processamento de dados em Python, API RESTful com Flask e interface web moderna com JavaScript.
 
 ## ✨ Características
 
 - **Processamento Avançado**: Algoritmos de alta performance para análise de dados
 - **Análise em Tempo Real**: Visualização e processamento de dados ao vivo
+- **API RESTful**: Endpoints completos para integração empresarial
 - **Interface Interativa**: Web interface moderna e responsiva
 - **Análise Estatística**: Modelagem estatística abrangente em R
 - **Arquitetura Escalável**: Construída para performance empresarial
+- **Configuração Profissional**: Setup pronto para produção
 
 ## 🛠️ Stack Tecnológico
 
 ### Backend
 - **Python**: Processamento principal e APIs
-- **Flask/FastAPI**: Endpoints RESTful
-- **SQLite**: Persistência de dados
+- **Flask**: Endpoints RESTful completos
+- **pandas/numpy**: Manipulação e análise de dados
+- **SQLite**: Persistência de dados local
 
 ### Frontend
 - **HTML5**: Estrutura semântica moderna
@@ -44,116 +47,148 @@ Este projeto demonstra a implementação de um sistema completo de análise de c
 
 ```
 Customer-Behavior-Analytics/
-├── customer_analytics.py  # Análise principal em Python
-├── analytics.R           # Scripts de análise estatística em R
-├── customer_analysis.R   # Análise específica de clientes
-├── app.js               # Aplicação JavaScript
-├── index.html           # Interface web
-├── styles.css           # Estilos modernos
-├── requirements.txt     # Dependências Python
-├── README.md           # Documentação
-└── LICENSE             # Licença MIT
+├── 📁 data/                    # Dataset e arquivos de dados
+│   └── customer_data.csv       # Dados de exemplo dos clientes
+├── 📁 notebooks/               # Análise exploratória
+│   ├── analise_exploratoria.ipynb
+│   ├── dashboard_interativo.ipynb
+│   └── modelo_comportamento.ipynb
+├── 📄 server.py                # Servidor Flask com API RESTful
+├── 📄 customer_analytics.py    # Scripts de análise Python
+├── 📄 customer_analysis.R      # Análise estatística em R
+├── 📄 analytics.R              # Funções auxiliares R
+├── 📄 index.html              # Interface web principal
+├── 📄 app.js                  # Lógica JavaScript
+├── 📄 styles.css              # Estilos responsivos
+├── 📄 requirements.txt        # Dependências Python
+├── 📄 .env.example           # Configurações de ambiente
+├── 📄 .gitignore             # Arquivos ignorados
+├── 📄 LICENSE                # Licença MIT
+└── 📄 README.md              # Documentação
 ```
 
 ## 🚀 Instalação e Uso
 
 ### Pré-requisitos
-
 - Python 3.8+
 - R 4.0+
 - Navegador moderno
 
-### Configuração
-
-1. **Clone o repositório:**
+### 1. Clone o repositório
 ```bash
 git clone https://github.com/galafis/Customer-Behavior-Analytics.git
 cd Customer-Behavior-Analytics
 ```
 
-2. **Configure o ambiente Python:**
+### 2. Configuração de ambiente
 ```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# Copie o arquivo de configuração
+cp .env.example .env
+
+# Edite as configurações conforme necessário
+nano .env  # ou seu editor preferido
+```
+
+### 3. Instale dependências Python
+```bash
 pip install -r requirements.txt
 ```
 
-3. **Instale pacotes R:**
-```r
-install.packages(c('ggplot2', 'dplyr', 'corrplot', 'plotly'))
-```
-
-4. **Execute a aplicação:**
+### 4. Execute o servidor Flask
 ```bash
-python customer_analytics.py
+# Desenvolvimento
+python server.py
+
+# Ou com variáveis de ambiente específicas
+FLASK_ENV=development FLASK_DEBUG=true python server.py
 ```
 
-5. **Acesse a interface web:**
-   - Abra `index.html` no navegador
-   - Interface responsiva para desktop e mobile
+### 5. Acesse a aplicação
+- **Interface Web**: `http://localhost:5000`
+- **API Endpoints**: `http://localhost:5000/api/`
+- **Documentação da API**: `http://localhost:5000/`
 
-## 📊 Funcionalidades de Análise
+## 📊 API Endpoints
 
-### Análise Python
-```python
-# Exemplo de uso
-import pandas as pd
-from customer_analytics import CustomerAnalyzer
+### Informações Gerais
+- `GET /` - Informações da API e lista de endpoints
+- `GET /health` - Status de saúde da aplicação
 
-analyzer = CustomerAnalyzer()
-data = analyzer.load_data('customer_data.csv')
-insights = analyzer.analyze_behavior(data)
-analyzer.generate_report(insights)
+### Clientes
+- `GET /api/customers` - Lista todos os clientes
+- `GET /api/customers/<id>` - Detalhes de um cliente específico
+- **Parâmetros de filtro**: `?country=USA&category=Electronics`
+
+### Analytics
+- `GET /api/analytics/summary` - Resumo geral das análises
+- `GET /api/analytics/demographics` - Análise demográfica
+- `GET /api/analytics/purchases` - Comportamento de compras
+
+### Exemplos de uso da API
+
+```bash
+# Obter todos os clientes
+curl http://localhost:5000/api/customers
+
+# Filtrar clientes por país
+curl "http://localhost:5000/api/customers?country=USA"
+
+# Obter resumo analytics
+curl http://localhost:5000/api/analytics/summary
+
+# Verificar saúde da aplicação
+curl http://localhost:5000/health
 ```
 
-### Análise Estatística em R
-```r
-# Carregar análise
-source('analytics.R')
+## 🔬 Análises Disponíveis
 
-# Criar instância do analisador
-analyzer <- DataAnalyzer$new()
+### Python Analytics (`customer_analytics.py`)
+- Segmentação de clientes
+- Análise de comportamento de compra
+- Detecção de padrões
+- Métricas de engajamento
 
-# Executar análise
-analyzer$load_data('data.csv')
-results <- analyzer$analyze()
-analyzer$generate_visualizations()
+### R Analytics (`customer_analysis.R`)
+- Modelagem estatística
+- Análise de correlação
+- Testes de hipóteses
+- Visualizações avançadas
+
+### Jupyter Notebooks
+- Análise exploratória interativa
+- Dashboard em tempo real
+- Modelagem de comportamento
+
+## ⚙️ Configuração Avançada
+
+### Variáveis de Ambiente (.env)
+
+O arquivo `.env.example` contém todas as configurações disponíveis:
+
+```bash
+# Configurações básicas
+FLASK_ENV=development
+FLASK_DEBUG=true
+PORT=5000
+
+# Banco de dados (se necessário)
+# DATABASE_URL=postgresql://user:pass@localhost:5432/db
+
+# Recursos avançados
+ENABLE_REAL_TIME_ANALYTICS=true
+API_RATE_LIMIT=1000
+CACHE_DEFAULT_TIMEOUT=300
 ```
 
-### Interface Web
-- **Dashboard Interativo**: Visualizações em tempo real
-- **Métricas de Performance**: KPIs e indicadores
-- **Relatórios Dinâmicos**: Geração automática de insights
-- **Exportação**: Múltiplos formatos (PDF, CSV, JSON)
+### Configuração para Produção
 
-## 📈 Capacidades de Análise
-
-- **Segmentação de Clientes**: Clustering e análise de grupos
-- **Análise de Comportamento**: Padrões de compra e navegação
-- **Previsão de Churn**: Modelos preditivos de retenção
-- **Análise de Valor**: Lifetime Value e ROI
-- **Visualizações Avançadas**: Gráficos interativos e dashboards
-
-## 🔧 Personalização
-
-### Configuração de Análise
-```python
-CONFIG = {
-    'analysis_type': 'comprehensive',
-    'visualization': True,
-    'export_format': ['json', 'csv', 'pdf'],
-    'real_time': True
-}
-```
-
-### Customização de Visualizações
-```r
-# Personalizar gráficos
-theme_custom <- theme_minimal() +
-    theme(
-        plot.title = element_text(size = 16, face = "bold"),
-        axis.text = element_text(size = 12)
-    )
+```bash
+# Configurações de produção no .env
+FLASK_ENV=production
+FLASK_DEBUG=false
+SECURE_HEADERS_ENABLED=true
+HTTPS_REDIRECT=true
+WORKERS=4
 ```
 
 ## 📱 Interface Responsiva
@@ -172,6 +207,9 @@ A interface web é totalmente responsiva com:
 - [ ] Dashboards personalizáveis
 - [ ] Alertas automáticos
 - [ ] Integração com bancos de dados externos
+- [ ] Autenticação e autorização
+- [ ] Cache distribuído com Redis
+- [ ] Processamento assíncrono
 
 ## 🤝 Contribuindo
 
@@ -190,12 +228,9 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ## 👨‍💻 Autor
 
 **Gabriel Demetrios Lafis**
-
 - GitHub: [@galafis](https://github.com/galafis)
 - Email: gabrieldemetrios@gmail.com
 - LinkedIn: [Gabriel Demetrios Lafis](https://www.linkedin.com/in/gabriel-demetrios-lafis-62197711b)
 
 ---
-
 ⭐ Se este projeto foi útil, considere deixar uma estrela!
-
