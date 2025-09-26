@@ -1,236 +1,157 @@
 # Customer Behavior Analytics
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Sistema avançado de análise de comportamento do cliente com funcionalidades abrangentes e stack tecnológico moderno. Oferece múltiplas linguagens de programação, interfaces web interativas, API RESTful completa e capacidades de análise avançadas para soluções de nível profissional.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 🎯 Visão Geral
+Sistema profissional para análise de comportamento do cliente com pipeline integrado em Python e R, API/visualização e estrutura pronta para expansão (API, notebooks, dashboards).
 
-Este projeto demonstra a implementação de um sistema completo de análise de comportamento do cliente, integrando análise estatística em R, processamento de dados em Python, API RESTful com Flask e interface web moderna com JavaScript.
+- Repositório: Customer-Behavior-Analytics
+- Dataset prioritário: data/customer_data.csv (real)
+- Fallback: dataset sintético gerado on-the-fly quando o real não estiver disponível
 
-## ✨ Características
+## Sumário
+- Visão Geral
+- Estrutura do Repositório
+- Pré-requisitos
+- Dataset e Prioridade de Fonte
+- Como Executar (Python e R)
+- Fluxo de Fallback Sintético
+- Geração de Insights e Visualizações
+- Exemplos de Entrada/Saída
+- Boas Práticas e Padrões do Pipeline
+- Roadmap (API, notebooks, etc.)
+- Contribuição
+- Licença
 
-- **Processamento Avançado**: Algoritmos de alta performance para análise de dados
-- **Análise em Tempo Real**: Visualização e processamento de dados ao vivo
-- **API RESTful**: Endpoints completos para integração empresarial
-- **Interface Interativa**: Web interface moderna e responsiva
-- **Análise Estatística**: Modelagem estatística abrangente em R
-- **Arquitetura Escalável**: Construída para performance empresarial
-- **Configuração Profissional**: Setup pronto para produção
+## Visão Geral
+Este projeto implementa um pipeline de analytics de clientes com:
+- Ingestão e limpeza do CSV real (data/customer_data.csv) como fonte padrão
+- Análises exploratórias e estatísticas (Python e R)
+- Geração de métricas e insights acionáveis
+- Visualizações salvas em ./outputs/ (PNG/HTML)
+- Fallback para dados sintéticos quando o CSV real não está presente
 
-## 🛠️ Stack Tecnológico
-
-### Backend
-- **Python**: Processamento principal e APIs
-- **Flask**: Endpoints RESTful completos
-- **pandas/numpy**: Manipulação e análise de dados
-- **SQLite**: Persistência de dados local
-
-### Frontend
-- **HTML5**: Estrutura semântica moderna
-- **CSS3**: Grid, Flexbox, animações responsivas
-- **JavaScript (ES6+)**: Funcionalidades interativas
-
-### Análise de Dados
-- **R**: Modelagem estatística e visualização
-- **ggplot2**: Gráficos avançados
-- **dplyr**: Manipulação de dados
-- **pandas/numpy**: Processamento de dados Python
-- **scikit-learn**: Machine Learning
-
-## 📁 Estrutura do Projeto
-
+## Estrutura do Repositório
 ```
-Customer-Behavior-Analytics/
-├── 📁 data/                    # Dataset e arquivos de dados
-│   └── customer_data.csv       # Dados de exemplo dos clientes
-├── 📁 notebooks/               # Análise exploratória
-│   ├── analise_exploratoria.ipynb
-│   ├── dashboard_interativo.ipynb
-│   └── modelo_comportamento.ipynb
-├── 📄 server.py                # Servidor Flask com API RESTful
-├── 📄 customer_analytics.py    # Scripts de análise Python
-├── 📄 customer_analysis.R      # Análise estatística em R
-├── 📄 analytics.R              # Funções auxiliares R
-├── 📄 index.html              # Interface web principal
-├── 📄 app.js                  # Lógica JavaScript
-├── 📄 styles.css              # Estilos responsivos
-├── 📄 requirements.txt        # Dependências Python
-├── 📄 .env.example           # Configurações de ambiente
-├── 📄 .gitignore             # Arquivos ignorados
-├── 📄 LICENSE                # Licença MIT
-└── 📄 README.md              # Documentação
+.
+├── data/
+│   └── customer_data.csv          # dataset real (prioritário)
+├── scripts/
+│   └── customer_analysis.R        # análise em R (usa CSV real por padrão)
+├── customer_analytics.py          # análise em Python (usa CSV real por padrão)
+├── outputs/                       # gráficos, relatórios, artefatos
+├── README.md
+└── requirements.txt (se aplicável)
 ```
 
-## 🚀 Instalação e Uso
+OBS: Ajuste caminhos conforme sua organização local. Os scripts assumem raiz do projeto ao serem executados.
 
-### Pré-requisitos
-- Python 3.8+
-- R 4.0+
-- Navegador moderno
+## Pré-requisitos
+- Python 3.9+ (recomendado 3.10/3.11)
+- R 4.1+
+- Bibliotecas Python: ver requirements.txt (ex.: pandas, numpy, matplotlib/seaborn, scikit-learn, flask opcional)
+- Pacotes R: tidyverse, readr, dplyr, ggplot2 (ajuste conforme o script)
 
-### 1. Clone o repositório
-```bash
-git clone https://github.com/galafis/Customer-Behavior-Analytics.git
-cd Customer-Behavior-Analytics
+Instalação (Python):
+- pip install -r requirements.txt
+
+## Dataset e Prioridade de Fonte
+- Fonte padrão: data/customer_data.csv
+- Variáveis de ambiente/CLI permitem apontar para outro CSV, mas por padrão os scripts tentam carregar o real primeiro
+- Se o arquivo real não existir ou falhar, ativa-se automaticamente o fluxo de fallback com dados sintéticos para fins de demonstração/validação
+
+## Como Executar
+
+### Python: customer_analytics.py
+Uso básico (usa o CSV real por padrão):
 ```
-
-### 2. Configuração de ambiente
-```bash
-# Copie o arquivo de configuração
-cp .env.example .env
-
-# Edite as configurações conforme necessário
-nano .env  # ou seu editor preferido
+python customer_analytics.py
 ```
-
-### 3. Instale dependências Python
-```bash
-pip install -r requirements.txt
+Com argumentos explícitos:
 ```
-
-### 4. Execute o servidor Flask
-```bash
-# Desenvolvimento
-python server.py
-
-# Ou com variáveis de ambiente específicas
-FLASK_ENV=development FLASK_DEBUG=true python server.py
+python customer_analytics.py --input data/customer_data.csv --output_dir outputs --no-show
 ```
+Parâmetros comuns:
+- --input: caminho para o CSV (padrão: data/customer_data.csv)
+- --output_dir: pasta de saída para gráficos/relatórios (padrão: outputs)
+- --no-show: não abrir janelas de plot (headless)
+- --seed: semente para reprodutibilidade
+- --fallback: forçar uso de dados sintéticos (sobrepõe CSV real)
 
-### 5. Acesse a aplicação
-- **Interface Web**: `http://localhost:5000`
-- **API Endpoints**: `http://localhost:5000/api/`
-- **Documentação da API**: `http://localhost:5000/`
+Comportamento:
+1) Tenta carregar data/customer_data.csv
+2) Se indisponível, gera dataset sintético consistente (esquema compatível)
+3) Executa limpeza, EDA, estatísticas e salva resultados em outputs/
+4) Retorna sumário/insights no console e salva artefatos
 
-## 📊 API Endpoints
-
-### Informações Gerais
-- `GET /` - Informações da API e lista de endpoints
-- `GET /health` - Status de saúde da aplicação
-
-### Clientes
-- `GET /api/customers` - Lista todos os clientes
-- `GET /api/customers/<id>` - Detalhes de um cliente específico
-- **Parâmetros de filtro**: `?country=USA&category=Electronics`
-
-### Analytics
-- `GET /api/analytics/summary` - Resumo geral das análises
-- `GET /api/analytics/demographics` - Análise demográfica
-- `GET /api/analytics/purchases` - Comportamento de compras
-
-### Exemplos de uso da API
-
-```bash
-# Obter todos os clientes
-curl http://localhost:5000/api/customers
-
-# Filtrar clientes por país
-curl "http://localhost:5000/api/customers?country=USA"
-
-# Obter resumo analytics
-curl http://localhost:5000/api/analytics/summary
-
-# Verificar saúde da aplicação
-curl http://localhost:5000/health
+### R: scripts/customer_analysis.R
+Uso básico (usa o CSV real por padrão):
 ```
-
-## 🔬 Análises Disponíveis
-
-### Python Analytics (`customer_analytics.py`)
-- Segmentação de clientes
-- Análise de comportamento de compra
-- Detecção de padrões
-- Métricas de engajamento
-
-### R Analytics (`customer_analysis.R`)
-- Modelagem estatística
-- Análise de correlação
-- Testes de hipóteses
-- Visualizações avançadas
-
-### Jupyter Notebooks
-- Análise exploratória interativa
-- Dashboard em tempo real
-- Modelagem de comportamento
-
-## ⚙️ Configuração Avançada
-
-### Variáveis de Ambiente (.env)
-
-O arquivo `.env.example` contém todas as configurações disponíveis:
-
-```bash
-# Configurações básicas
-FLASK_ENV=development
-FLASK_DEBUG=true
-PORT=5000
-
-# Banco de dados (se necessário)
-# DATABASE_URL=postgresql://user:pass@localhost:5432/db
-
-# Recursos avançados
-ENABLE_REAL_TIME_ANALYTICS=true
-API_RATE_LIMIT=1000
-CACHE_DEFAULT_TIMEOUT=300
+Rscript scripts/customer_analysis.R
 ```
-
-### Configuração para Produção
-
-```bash
-# Configurações de produção no .env
-FLASK_ENV=production
-FLASK_DEBUG=false
-SECURE_HEADERS_ENABLED=true
-HTTPS_REDIRECT=true
-WORKERS=4
+Com argumentos explícitos:
 ```
+Rscript scripts/customer_analysis.R --input data/customer_data.csv --output_dir outputs --no-view
+```
+Parâmetros comuns:
+- --input: caminho para o CSV (padrão: data/customer_data.csv)
+- --output_dir: pasta de saída (padrão: outputs)
+- --no-view: não abrir dispositivos gráficos
+- --seed: semente para reprodutibilidade
+- --fallback: forçar dados sintéticos
 
-## 📱 Interface Responsiva
+## Fluxo de Fallback Sintético
+- Gera um dataset com colunas equivalentes ao esquema esperado (ex.: customer_id, age, gender, tenure, churn, revenue, segments, etc.)
+- Tamanhos e distribuições configuráveis via seed/parâmetros
+- Indicadores/artefatos marcados como synthetic_* em metadados/logs para rastreabilidade
 
-A interface web é totalmente responsiva com:
-- **Mobile-First Design**: Otimizada para dispositivos móveis
-- **Grid Layout**: Layout flexível e adaptável
-- **Interatividade**: Elementos interativos modernos
-- **Performance**: Carregamento rápido e eficiente
+## Geração de Insights e Visualizações
+- Métricas: churn rate, LTV aproximado, ARPU, distribuição por segmento, coortes simples
+- Visualizações: histogramas, boxplots, barras por segmento, heatmaps de correlação
+- Saída padrão: arquivos salvos em outputs/ com nomes como:
+  - outputs/eda_summary.txt
+  - outputs/correlation_heatmap.png
+  - outputs/segment_distribution.png
+  - outputs/churn_by_segment.png
 
-## 🔧 Extensões Possíveis
+## Exemplos de Entrada/Saída
+Entrada (CSV real, cabeçalho esperado mínimo):
+```
+customer_id,age,gender,tenure,revenue,churn,segment
+1001,34,F,12,129.9,0,Gold
+1002,45,M,5,89.0,1,Silver
+```
+Saídas esperadas:
+- Console: resumo descritivo, taxas agregadas, alertas de qualidade
+- Arquivos em outputs/: gráficos PNG e relatório TXT conforme seção anterior
 
-- [ ] Integração com APIs de CRM
-- [ ] Análise de sentimento em tempo real
-- [ ] Machine Learning avançado
-- [ ] Dashboards personalizáveis
-- [ ] Alertas automáticos
-- [ ] Integração com bancos de dados externos
-- [ ] Autenticação e autorização
-- [ ] Cache distribuído com Redis
-- [ ] Processamento assíncrono
+## Boas Práticas e Padrões do Pipeline
+- Separação clara de módulos (ingestão, preparo, modelagem/estatísticas, visualização)
+- Logs e mensagens claras sobre qual fonte foi usada (real vs sintética)
+- Parametrização via CLI e seeds para reprodutibilidade
+- Estrutura de diretórios estável (data/, outputs/, scripts/)
+- Tratamento de erros e mensagens amigáveis (ex.: instruir a criar data/customer_data.csv)
+- Compatibilidade headless (CI/CD) com flags --no-show/--no-view
 
-## 🤝 Contribuindo
+## Integração entre Módulos
+- Python e R podem operar de forma independente sobre o mesmo CSV real
+- Artefatos em outputs/ são compartilháveis entre linguagens
+- Possível integração via arquivos intermediários (parquet/csv) e convenções de nomes
 
-Contribuições são bem-vindas! Para contribuir:
+## Roadmap e Possibilidades Futuras
+- API Flask para servir métricas e gráficos (endpoint /health, /metrics, /segments)
+- Notebooks (Jupyter/Quarto) para análises ad hoc no diretório notebooks/
+- Dockerfile para padronização de ambiente e execução única
+- CI (GitHub Actions) para lint/test/execução headless dos scripts
+- Camadas de modelagem (propensão a churn, clusterização de segmentos)
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/NovaAnalise`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova análise'`)
-4. Push para a branch (`git push origin feature/NovaAnalise`)
-5. Abra um Pull Request
+## Dicas de Execução
+- Garanta que data/customer_data.csv exista para usar dados reais
+- Crie a pasta outputs/ (os scripts podem criar automaticamente)
+- Use --fallback para validações rápidas sem dados reais
+- Defina --seed para reproduzir resultados
 
-## 📄 Licença
+## Contribuição
+Contribuições são bem-vindas! Abra uma issue ou envie um PR com melhorias (documentação, código, visualizações, exemplos de dados, testes).
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 👨‍💻 Autor
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- Email: gabrieldemetrios@gmail.com
-- LinkedIn: [Gabriel Demetrios Lafis](https://www.linkedin.com/in/gabriel-demetrios-lafis-62197711b)
-
----
-⭐ Se este projeto foi útil, considere deixar uma estrela!
+## Licença
+MIT. Veja o arquivo LICENSE se presente, ou inclua um conforme necessário.
