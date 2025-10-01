@@ -1,173 +1,159 @@
-# Análise de Comportamento do Cliente / Customer Behavior Analytics
+# Análise de Comportamento do Cliente
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
+![R](https://img.shields.io/badge/R-4.1%2B-blue?style=for-the-badge&logo=r)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-v1.3-orange?style=for-the-badge&logo=scikit-learn)
+![Pandas](https://img.shields.io/badge/Pandas-v2.0-red?style=for-the-badge&logo=pandas)
+![Plotly](https://img.shields.io/badge/Plotly-v5.15-purple?style=for-the-badge&logo=plotly)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Ativo-brightgreen?style=for-the-badge&logo=github)
 
----
+## Visão Geral
 
-## 🇧🇷 Português
+Este repositório apresenta um projeto de **Análise de Comportamento do Cliente** desenvolvido por Gabriel Demetrios Lafis. O objetivo é demonstrar a aplicação de técnicas de ciência de dados para entender padrões de compra, segmentar clientes e prever o churn, utilizando Python e R para análise e visualização.
 
-### Descrição
-Este projeto visa analisar o comportamento do cliente usando dados de compras para identificar padrões, segmentar clientes e prever a rotatividade (churn). Ele utiliza técnicas de análise RFM (Recência, Frequência, Valor Monetário) e aprendizado de máquina para fornecer insights acionáveis.
+O projeto inclui:
 
-### Funcionalidades
-- **Geração de Dados Sintéticos**: Se nenhum arquivo de dados for fornecido, o projeto pode gerar dados sintéticos para demonstração.
-- **Cálculo de Métricas do Cliente**: Calcula métricas importantes como Recência, Frequência, Valor Monetário (RFM) e Valor de Vida do Cliente (CLV).
-- **Segmentação de Clientes**: Utiliza o algoritmo K-Means para segmentar clientes com base em suas métricas RFM.
-- **Análise de Características do Segmento**: Fornece um resumo das características de cada segmento de cliente.
-- **Visualizações Interativas**: Gera um dashboard interativo em HTML com gráficos 3D de segmentação, distribuição de churn, receita por segmento e CLV médio por segmento.
-- **Previsão de Churn**: Constrói e avalia um modelo de Random Forest para prever a rotatividade de clientes.
-- **Relatório de Insights**: Gera um relatório consolidado com os principais insights da análise.
+*   **Análise Exploratória de Dados (EDA)**: Compreensão profunda dos dados do cliente.
+*   **Segmentação de Clientes**: Utilizando algoritmos de clustering (K-Means) para identificar grupos de clientes com comportamentos semelhantes.
+*   **Análise RFM (Recência, Frequência, Valor Monetário)**: Uma técnica poderosa para segmentar clientes com base em seu histórico de transações.
+*   **Previsão de Churn**: Construção de modelos de Machine Learning para prever quais clientes têm maior probabilidade de deixar o serviço.
+*   **Visualizações Interativas**: Dashboards criados com Plotly para explorar os insights de forma dinâmica.
+*   **Documentação Bilíngue**: READMEs completos em Português e Inglês.
+
+## Estrutura do Projeto
+
+A estrutura do repositório é organizada para facilitar a navegação e compreensão:
+
+```
+Customer-Behavior-Analytics/
+├── docs/                       # Documentação adicional e notebooks
+│   └── notebooks/
+│       └── Exploratory_Customer_Analysis.ipynb
+├── public/                     # Arquivos estáticos para GitHub Pages
+│   ├── index.html
+│   └── styles.css
+├── src/                        # Código fonte do projeto
+│   ├── data/                   # Dados (sintéticos ou reais)
+│   │   └── customer_data.csv
+│   ├── customer_analytics.py   # Script principal de análise em Python
+│   ├── analytics.R             # Script de análise em R
+│   ├── customer_analysis.R     # Script de análise em R (detalhado)
+│   ├── app.js                  # Lógica JavaScript para frontend
+│   └── server.py               # Servidor Flask para API (se aplicável)
+├── tests/                      # Testes unitários
+│   └── test_customer_analytics.py
+├── .gitignore                  # Arquivos e pastas a serem ignorados pelo Git
+├── LICENSE                     # Licença do projeto
+├── README.md                   # Este arquivo (Português)
+├── README_en.md                # README em Inglês
+└── requirements.txt            # Dependências Python
+```
+
+## Arquitetura do Sistema
+
+O diagrama abaixo ilustra a arquitetura geral do projeto:
+
+```mermaid
+graph TD
+    A[Dados Brutos] --> B(Pré-processamento de Dados)
+    B --> C{Análise de Comportamento do Cliente}
+    C --> D[Segmentação RFM]
+    C --> E[Segmentação K-Means]
+    C --> F[Previsão de Churn]
+    D --> G[Insights de Segmentos]
+    E --> G
+    F --> G
+    G --> H[Visualizações Interativas]
+    H --> I[Dashboard Web (GitHub Pages)]
+    subgraph Ferramentas
+        B -- Python/Pandas --> B
+        C -- Python/scikit-learn, R/dplyr --> C
+        H -- Plotly/R/ggplot2 --> H
+    end
+```
+
+## Como Usar
+
+### Pré-requisitos
+
+Certifique-se de ter Python 3.9+ e R 4.1+ instalados em seu sistema. As dependências Python são listadas em `requirements.txt`.
 
 ### Instalação
-Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/Customer-Behavior-Analytics.git
-   cd Customer-Behavior-Analytics
-   ```
+1.  **Clonar o repositório:**
 
-2. Crie e ative um ambiente virtual (opcional, mas recomendado):
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+    ```bash
+    git clone https://github.com/galafis/Customer-Behavior-Analytics.git
+    cd Customer-Behavior-Analytics
+    ```
 
-3. Instale as dependências:
-   ```bash
-   pip install -r config/requirements.txt
-   ```
+2.  **Instalar dependências Python:**
 
-### Uso
-Para executar a análise completa, execute o script principal:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Instalar dependências R (se for usar os scripts R):**
+
+    Abra o console R e execute:
+
+    ```R
+    install.packages(c("dplyr", "ggplot2", "cluster", "factoextra", "corrplot", "randomForest", "caret", "plotly", "DT", "shiny", "shinydashboard"), repos="http://cran.us.r-project.org")
+    ```
+
+### Execução
+
+#### Análise Python
+
+Para executar a análise de comportamento do cliente em Python e gerar o dashboard HTML:
 
 ```bash
-python3 src/customer_analytics.py
+python src/customer_analytics.py
 ```
 
-- Se você tiver seus próprios dados de cliente em formato CSV, coloque-os em `src/data/customer_data.csv`. O script usará esses dados. Caso contrário, dados sintéticos serão gerados automaticamente.
-- Um dashboard interativo (`docs/customer_behavior_dashboard.html`) será gerado na pasta `docs/` do projeto.
+O dashboard interativo será salvo como `customer_behavior_dashboard.html` na raiz do projeto.
 
-### Estrutura do Projeto
-```
-Customer-Behavior-Analytics/
-├── config/
-│   └── requirements.txt
-├── docs/
-│   ├── notebooks/
-│   └── customer_behavior_dashboard.html (dashboard gerado)
-├── src/
-│   ├── data/
-│   │   └── customer_data.csv (opcional, para seus dados)
-│   └── customer_analytics.py
-├── tests/
-│   └── test_customer_analytics.py
-├── .gitignore
-└── README.md
+#### Análise R
+
+Para executar a análise de comportamento do cliente em R:
+
+```bash
+Rscript src/customer_analysis.R
 ```
 
-### GitHub Pages
-Este projeto está configurado para ser publicado no GitHub Pages. O dashboard interativo (`customer_behavior_dashboard.html`) gerado pode ser visualizado diretamente através do GitHub Pages. Para ativar, vá para as configurações do seu repositório no GitHub, selecione 'Pages' e configure a fonte para a branch `gh-pages` (ou `main`/`master` com a pasta `/docs`).
+Ou interativamente no console R:
 
-### Tecnologias Utilizadas
-- Python 3.x
-- Pandas
-- NumPy
-- Scikit-learn
-- Plotly
+```R
+source("src/customer_analysis.R")
+results <- run_customer_analysis()
+```
 
-### Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+## Testes
 
-### Contribuição
-Contribuições são bem-vindas! Por favor, siga estas diretrizes:
-1. Faça um fork do repositório.
-2. Crie uma nova branch (`git checkout -b feature/sua-feature`).
-3. Faça suas alterações e commit-as (`git commit -m 'Adiciona nova feature'`).
-4. Envie para a branch (`git push origin feature/sua-feature`).
-5. Abra um Pull Request.
+Para executar os testes unitários do projeto Python:
+
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+python -m unittest tests/test_customer_analytics.py
+```
+
+## GitHub Pages
+
+Uma demonstração interativa do dashboard gerado pelo script Python está disponível via GitHub Pages [aqui](https://galafis.github.io/Customer-Behavior-Analytics/).
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## Autor
+
+**Gabriel Demetrios Lafis**
+
+*   [GitHub](https://github.com/galafis)
+*   [LinkedIn](https://www.linkedin.com/in/gabriel-demetrios-lafis/)
 
 ---
-
-## 🇬🇧 English
-
-### Description
-This project aims to analyze customer behavior using purchase data to identify patterns, segment customers, and predict churn. It utilizes RFM (Recency, Frequency, Monetary) analysis and machine learning techniques to provide actionable insights.
-
-### Features
-- **Synthetic Data Generation**: If no data file is provided, the project can generate synthetic data for demonstration purposes.
-- **Customer Metrics Calculation**: Calculates important metrics such as Recency, Frequency, Monetary (RFM), and Customer Lifetime Value (CLV).
-- **Customer Segmentation**: Uses the K-Means algorithm to segment customers based on their RFM metrics.
-- **Segment Characteristics Analysis**: Provides a summary of the characteristics of each customer segment.
-- **Interactive Visualizations**: Generates an interactive HTML dashboard with 3D segmentation plots, churn distribution, revenue by segment, and average CLV by segment.
-- **Churn Prediction**: Builds and evaluates a Random Forest model to predict customer churn.
-- **Insights Report**: Generates a consolidated report with key insights from the analysis.
-
-### Installation
-To set up the development environment, follow the steps below:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/Customer-Behavior-Analytics.git
-   cd Customer-Behavior-Analytics
-   ```
-
-2. Create and activate a virtual environment (optional, but recommended):
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r config/requirements.txt
-   ```
-
-### Usage
-To run the complete analysis, execute the main script:
-
-```bash
-python3 src/customer_analytics.py
-```
-
-- If you have your own customer data in CSV format, place it in `src/data/customer_data.csv`. The script will use this data. Otherwise, synthetic data will be automatically generated.
-- An interactive dashboard (`docs/customer_behavior_dashboard.html`) will be generated in the `docs/` folder of the project.
-
-### Project Structure
-```
-Customer-Behavior-Analytics/
-├── config/
-│   └── requirements.txt
-├── docs/
-│   ├── notebooks/
-│   └── customer_behavior_dashboard.html (generated dashboard)
-├── src/
-│   ├── data/
-│   │   └── customer_data.csv (optional, for your data)
-│   └── customer_analytics.py
-├── tests/
-│   └── test_customer_analytics.py
-├── .gitignore
-└── README.md
-```
-
-### GitHub Pages
-This project is configured to be published on GitHub Pages. The generated interactive dashboard (`customer_behavior_dashboard.html`) can be viewed directly via GitHub Pages. To activate, go to your repository settings on GitHub, select 'Pages' and configure the source to the `gh-pages` branch (or `main`/`master` with the `/docs` folder).
-
-### Technologies Used
-- Python 3.x
-- Pandas
-- NumPy
-- Scikit-learn
-- Plotly
-
-### License
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-### Contribution
-Contributions are welcome! Please follow these guidelines:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Make your changes and commit them (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Open a Pull Request.
