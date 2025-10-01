@@ -1,10 +1,15 @@
 # Análise de Comportamento do Cliente / Customer Behavior Analytics
 
+![Hero Image](https://files.manuscdn.com/user_upload_by_module/session_file/310419663028677753/bzjzfdNTeKTeHRnI.png)
+
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
 
 ## 🇧🇷 Português
+
+### Visão Geral do Projeto
+Este projeto, desenvolvido por Gabriel Demetrios Lafis, foca na análise aprofundada do comportamento do cliente utilizando dados de compras. O objetivo é identificar padrões de consumo, segmentar clientes de forma eficaz e prever a rotatividade (churn) para otimizar estratégias de retenção. Através da aplicação de técnicas de análise RFM (Recência, Frequência, Valor Monetário) e algoritmos de aprendizado de máquina, o projeto oferece insights acionáveis que permitem às empresas tomar decisões baseadas em dados para melhorar a experiência do cliente e impulsionar o crescimento.
 
 ### Descrição
 Este projeto visa analisar o comportamento do cliente usando dados de compras para identificar padrões, segmentar clientes e prever a rotatividade (churn). Ele utiliza técnicas de análise RFM (Recência, Frequência, Valor Monetário) e aprendizado de máquina para fornecer insights acionáveis.
@@ -23,7 +28,7 @@ Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/Customer-Behavior-Analytics.git
+   git clone https://github.com/galafis/Customer-Behavior-Analytics.git
    cd Customer-Behavior-Analytics
    ```
 
@@ -91,6 +96,9 @@ Contribuições são bem-vindas! Por favor, siga estas diretrizes:
 
 ## 🇬🇧 English
 
+### Project Overview
+This project, developed by Gabriel Demetrios Lafis, focuses on in-depth customer behavior analysis using purchase data. The goal is to identify consumption patterns, effectively segment customers, and predict churn to optimize retention strategies. By applying RFM (Recency, Frequency, Monetary) analysis techniques and machine learning algorithms, the project offers actionable insights that enable businesses to make data-driven decisions to improve customer experience and drive growth.
+
 ### Description
 This project aims to analyze customer behavior using purchase data to identify patterns, segment customers, and predict churn. It utilizes RFM (Recency, Frequency, Monetary) analysis and machine learning techniques to provide actionable insights.
 
@@ -108,7 +116,7 @@ To set up the development environment, follow the steps below:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/Customer-Behavior-Analytics.git
+   git clone https://github.com/galafis/Customer-Behavior-Analytics.git
    cd Customer-Behavior-Analytics
    ```
 
@@ -154,7 +162,7 @@ Customer-Behavior-Analytics/
 ### GitHub Pages
 This project is configured to be published on GitHub Pages. The generated interactive dashboard (`customer_behavior_dashboard.html`) can be viewed directly via GitHub Pages. To activate, go to your repository settings on GitHub, select 'Pages' and configure the source to the `gh-pages` branch (or `main`/`master` with the `/docs` folder).
 
-### Technologies Used
+### Tecnologias Utilizadas
 - Python 3.x
 - Pandas
 - NumPy
@@ -171,3 +179,4 @@ Contributions are welcome! Please follow these guidelines:
 3. Make your changes and commit them (`git commit -m 'Add new feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Open a Pull Request.
+
