@@ -1,157 +1,173 @@
-# Customer Behavior Analytics
+# Análise de Comportamento do Cliente / Customer Behavior Analytics
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Sistema profissional para análise de comportamento do cliente com pipeline integrado em Python e R, API/visualização e estrutura pronta para expansão (API, notebooks, dashboards).
+---
 
-- Repositório: Customer-Behavior-Analytics
-- Dataset prioritário: data/customer_data.csv (real)
-- Fallback: dataset sintético gerado on-the-fly quando o real não estiver disponível
+## 🇧🇷 Português
 
-## Sumário
-- Visão Geral
-- Estrutura do Repositório
-- Pré-requisitos
-- Dataset e Prioridade de Fonte
-- Como Executar (Python e R)
-- Fluxo de Fallback Sintético
-- Geração de Insights e Visualizações
-- Exemplos de Entrada/Saída
-- Boas Práticas e Padrões do Pipeline
-- Roadmap (API, notebooks, etc.)
-- Contribuição
-- Licença
+### Descrição
+Este projeto visa analisar o comportamento do cliente usando dados de compras para identificar padrões, segmentar clientes e prever a rotatividade (churn). Ele utiliza técnicas de análise RFM (Recência, Frequência, Valor Monetário) e aprendizado de máquina para fornecer insights acionáveis.
 
-## Visão Geral
-Este projeto implementa um pipeline de analytics de clientes com:
-- Ingestão e limpeza do CSV real (data/customer_data.csv) como fonte padrão
-- Análises exploratórias e estatísticas (Python e R)
-- Geração de métricas e insights acionáveis
-- Visualizações salvas em ./outputs/ (PNG/HTML)
-- Fallback para dados sintéticos quando o CSV real não está presente
+### Funcionalidades
+- **Geração de Dados Sintéticos**: Se nenhum arquivo de dados for fornecido, o projeto pode gerar dados sintéticos para demonstração.
+- **Cálculo de Métricas do Cliente**: Calcula métricas importantes como Recência, Frequência, Valor Monetário (RFM) e Valor de Vida do Cliente (CLV).
+- **Segmentação de Clientes**: Utiliza o algoritmo K-Means para segmentar clientes com base em suas métricas RFM.
+- **Análise de Características do Segmento**: Fornece um resumo das características de cada segmento de cliente.
+- **Visualizações Interativas**: Gera um dashboard interativo em HTML com gráficos 3D de segmentação, distribuição de churn, receita por segmento e CLV médio por segmento.
+- **Previsão de Churn**: Constrói e avalia um modelo de Random Forest para prever a rotatividade de clientes.
+- **Relatório de Insights**: Gera um relatório consolidado com os principais insights da análise.
 
-## Estrutura do Repositório
+### Instalação
+Para configurar o ambiente de desenvolvimento, siga os passos abaixo:
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/Customer-Behavior-Analytics.git
+   cd Customer-Behavior-Analytics
+   ```
+
+2. Crie e ative um ambiente virtual (opcional, mas recomendado):
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Instale as dependências:
+   ```bash
+   pip install -r config/requirements.txt
+   ```
+
+### Uso
+Para executar a análise completa, execute o script principal:
+
+```bash
+python3 src/customer_analytics.py
 ```
-.
-├── data/
-│   └── customer_data.csv          # dataset real (prioritário)
-├── scripts/
-│   └── customer_analysis.R        # análise em R (usa CSV real por padrão)
-├── customer_analytics.py          # análise em Python (usa CSV real por padrão)
-├── outputs/                       # gráficos, relatórios, artefatos
-├── README.md
-└── requirements.txt (se aplicável)
+
+- Se você tiver seus próprios dados de cliente em formato CSV, coloque-os em `src/data/customer_data.csv`. O script usará esses dados. Caso contrário, dados sintéticos serão gerados automaticamente.
+- Um dashboard interativo (`docs/customer_behavior_dashboard.html`) será gerado na pasta `docs/` do projeto.
+
+### Estrutura do Projeto
+```
+Customer-Behavior-Analytics/
+├── config/
+│   └── requirements.txt
+├── docs/
+│   ├── notebooks/
+│   └── customer_behavior_dashboard.html (dashboard gerado)
+├── src/
+│   ├── data/
+│   │   └── customer_data.csv (opcional, para seus dados)
+│   └── customer_analytics.py
+├── tests/
+│   └── test_customer_analytics.py
+├── .gitignore
+└── README.md
 ```
 
-OBS: Ajuste caminhos conforme sua organização local. Os scripts assumem raiz do projeto ao serem executados.
+### GitHub Pages
+Este projeto está configurado para ser publicado no GitHub Pages. O dashboard interativo (`customer_behavior_dashboard.html`) gerado pode ser visualizado diretamente através do GitHub Pages. Para ativar, vá para as configurações do seu repositório no GitHub, selecione 'Pages' e configure a fonte para a branch `gh-pages` (ou `main`/`master` com a pasta `/docs`).
 
-## Pré-requisitos
-- Python 3.9+ (recomendado 3.10/3.11)
-- R 4.1+
-- Bibliotecas Python: ver requirements.txt (ex.: pandas, numpy, matplotlib/seaborn, scikit-learn, flask opcional)
-- Pacotes R: tidyverse, readr, dplyr, ggplot2 (ajuste conforme o script)
+### Tecnologias Utilizadas
+- Python 3.x
+- Pandas
+- NumPy
+- Scikit-learn
+- Plotly
 
-Instalação (Python):
-- pip install -r requirements.txt
+### Licença
+Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
-## Dataset e Prioridade de Fonte
-- Fonte padrão: data/customer_data.csv
-- Variáveis de ambiente/CLI permitem apontar para outro CSV, mas por padrão os scripts tentam carregar o real primeiro
-- Se o arquivo real não existir ou falhar, ativa-se automaticamente o fluxo de fallback com dados sintéticos para fins de demonstração/validação
+### Contribuição
+Contribuições são bem-vindas! Por favor, siga estas diretrizes:
+1. Faça um fork do repositório.
+2. Crie uma nova branch (`git checkout -b feature/sua-feature`).
+3. Faça suas alterações e commit-as (`git commit -m 'Adiciona nova feature'`).
+4. Envie para a branch (`git push origin feature/sua-feature`).
+5. Abra um Pull Request.
 
-## Como Executar
+---
 
-### Python: customer_analytics.py
-Uso básico (usa o CSV real por padrão):
+## 🇬🇧 English
+
+### Description
+This project aims to analyze customer behavior using purchase data to identify patterns, segment customers, and predict churn. It utilizes RFM (Recency, Frequency, Monetary) analysis and machine learning techniques to provide actionable insights.
+
+### Features
+- **Synthetic Data Generation**: If no data file is provided, the project can generate synthetic data for demonstration purposes.
+- **Customer Metrics Calculation**: Calculates important metrics such as Recency, Frequency, Monetary (RFM), and Customer Lifetime Value (CLV).
+- **Customer Segmentation**: Uses the K-Means algorithm to segment customers based on their RFM metrics.
+- **Segment Characteristics Analysis**: Provides a summary of the characteristics of each customer segment.
+- **Interactive Visualizations**: Generates an interactive HTML dashboard with 3D segmentation plots, churn distribution, revenue by segment, and average CLV by segment.
+- **Churn Prediction**: Builds and evaluates a Random Forest model to predict customer churn.
+- **Insights Report**: Generates a consolidated report with key insights from the analysis.
+
+### Installation
+To set up the development environment, follow the steps below:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/Customer-Behavior-Analytics.git
+   cd Customer-Behavior-Analytics
+   ```
+
+2. Create and activate a virtual environment (optional, but recommended):
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r config/requirements.txt
+   ```
+
+### Usage
+To run the complete analysis, execute the main script:
+
+```bash
+python3 src/customer_analytics.py
 ```
-python customer_analytics.py
+
+- If you have your own customer data in CSV format, place it in `src/data/customer_data.csv`. The script will use this data. Otherwise, synthetic data will be automatically generated.
+- An interactive dashboard (`docs/customer_behavior_dashboard.html`) will be generated in the `docs/` folder of the project.
+
+### Project Structure
 ```
-Com argumentos explícitos:
+Customer-Behavior-Analytics/
+├── config/
+│   └── requirements.txt
+├── docs/
+│   ├── notebooks/
+│   └── customer_behavior_dashboard.html (generated dashboard)
+├── src/
+│   ├── data/
+│   │   └── customer_data.csv (optional, for your data)
+│   └── customer_analytics.py
+├── tests/
+│   └── test_customer_analytics.py
+├── .gitignore
+└── README.md
 ```
-python customer_analytics.py --input data/customer_data.csv --output_dir outputs --no-show
-```
-Parâmetros comuns:
-- --input: caminho para o CSV (padrão: data/customer_data.csv)
-- --output_dir: pasta de saída para gráficos/relatórios (padrão: outputs)
-- --no-show: não abrir janelas de plot (headless)
-- --seed: semente para reprodutibilidade
-- --fallback: forçar uso de dados sintéticos (sobrepõe CSV real)
 
-Comportamento:
-1) Tenta carregar data/customer_data.csv
-2) Se indisponível, gera dataset sintético consistente (esquema compatível)
-3) Executa limpeza, EDA, estatísticas e salva resultados em outputs/
-4) Retorna sumário/insights no console e salva artefatos
+### GitHub Pages
+This project is configured to be published on GitHub Pages. The generated interactive dashboard (`customer_behavior_dashboard.html`) can be viewed directly via GitHub Pages. To activate, go to your repository settings on GitHub, select 'Pages' and configure the source to the `gh-pages` branch (or `main`/`master` with the `/docs` folder).
 
-### R: scripts/customer_analysis.R
-Uso básico (usa o CSV real por padrão):
-```
-Rscript scripts/customer_analysis.R
-```
-Com argumentos explícitos:
-```
-Rscript scripts/customer_analysis.R --input data/customer_data.csv --output_dir outputs --no-view
-```
-Parâmetros comuns:
-- --input: caminho para o CSV (padrão: data/customer_data.csv)
-- --output_dir: pasta de saída (padrão: outputs)
-- --no-view: não abrir dispositivos gráficos
-- --seed: semente para reprodutibilidade
-- --fallback: forçar dados sintéticos
+### Technologies Used
+- Python 3.x
+- Pandas
+- NumPy
+- Scikit-learn
+- Plotly
 
-## Fluxo de Fallback Sintético
-- Gera um dataset com colunas equivalentes ao esquema esperado (ex.: customer_id, age, gender, tenure, churn, revenue, segments, etc.)
-- Tamanhos e distribuições configuráveis via seed/parâmetros
-- Indicadores/artefatos marcados como synthetic_* em metadados/logs para rastreabilidade
+### License
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Geração de Insights e Visualizações
-- Métricas: churn rate, LTV aproximado, ARPU, distribuição por segmento, coortes simples
-- Visualizações: histogramas, boxplots, barras por segmento, heatmaps de correlação
-- Saída padrão: arquivos salvos em outputs/ com nomes como:
-  - outputs/eda_summary.txt
-  - outputs/correlation_heatmap.png
-  - outputs/segment_distribution.png
-  - outputs/churn_by_segment.png
-
-## Exemplos de Entrada/Saída
-Entrada (CSV real, cabeçalho esperado mínimo):
-```
-customer_id,age,gender,tenure,revenue,churn,segment
-1001,34,F,12,129.9,0,Gold
-1002,45,M,5,89.0,1,Silver
-```
-Saídas esperadas:
-- Console: resumo descritivo, taxas agregadas, alertas de qualidade
-- Arquivos em outputs/: gráficos PNG e relatório TXT conforme seção anterior
-
-## Boas Práticas e Padrões do Pipeline
-- Separação clara de módulos (ingestão, preparo, modelagem/estatísticas, visualização)
-- Logs e mensagens claras sobre qual fonte foi usada (real vs sintética)
-- Parametrização via CLI e seeds para reprodutibilidade
-- Estrutura de diretórios estável (data/, outputs/, scripts/)
-- Tratamento de erros e mensagens amigáveis (ex.: instruir a criar data/customer_data.csv)
-- Compatibilidade headless (CI/CD) com flags --no-show/--no-view
-
-## Integração entre Módulos
-- Python e R podem operar de forma independente sobre o mesmo CSV real
-- Artefatos em outputs/ são compartilháveis entre linguagens
-- Possível integração via arquivos intermediários (parquet/csv) e convenções de nomes
-
-## Roadmap e Possibilidades Futuras
-- API Flask para servir métricas e gráficos (endpoint /health, /metrics, /segments)
-- Notebooks (Jupyter/Quarto) para análises ad hoc no diretório notebooks/
-- Dockerfile para padronização de ambiente e execução única
-- CI (GitHub Actions) para lint/test/execução headless dos scripts
-- Camadas de modelagem (propensão a churn, clusterização de segmentos)
-
-## Dicas de Execução
-- Garanta que data/customer_data.csv exista para usar dados reais
-- Crie a pasta outputs/ (os scripts podem criar automaticamente)
-- Use --fallback para validações rápidas sem dados reais
-- Defina --seed para reproduzir resultados
-
-## Contribuição
-Contribuições são bem-vindas! Abra uma issue ou envie um PR com melhorias (documentação, código, visualizações, exemplos de dados, testes).
-
-## Licença
-MIT. Veja o arquivo LICENSE se presente, ou inclua um conforme necessário.
+### Contribution
+Contributions are welcome! Please follow these guidelines:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.

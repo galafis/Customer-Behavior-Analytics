@@ -6,3 +6,37 @@ __pycache__/
 .DS_Store
 dist/
 build/
+
+# Byte-compiled / optimized / DLL files
+*.pyd
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Environments
+.venv
+v-env/
+virtualenv/
+env/
+venv/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS generated files
+thumbs.db
+
+# Logs and databases
+*.sqlite
+
+# Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Plotly dashboards
+docs/customer_behavior_dashboard.html
+
+# Data files
+src/data/customer_data.csv
