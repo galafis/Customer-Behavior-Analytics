@@ -1,5 +1,7 @@
 # Análise de Comportamento do Cliente / Customer Behavior Analytics
 
+## 🖼️ Imagem Hero
+
 ![Hero Image](https://files.manuscdn.com/user_upload_by_module/session_file/310419663028677753/bzjzfdNTeKTeHRnI.png)
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -74,7 +76,7 @@ Customer-Behavior-Analytics/
 ### GitHub Pages
 Este projeto está configurado para ser publicado no GitHub Pages. O dashboard interativo (`customer_behavior_dashboard.html`) gerado pode ser visualizado diretamente através do GitHub Pages. Para ativar, vá para as configurações do seu repositório no GitHub, selecione 'Pages' e configure a fonte para a branch `gh-pages` (ou `main`/`master` com a pasta `/docs`).
 
-### Tecnologias Utilizadas
+### Technologies Used
 - Python 3.x
 - Pandas
 - NumPy
@@ -162,7 +164,7 @@ Customer-Behavior-Analytics/
 ### GitHub Pages
 This project is configured to be published on GitHub Pages. The generated interactive dashboard (`customer_behavior_dashboard.html`) can be viewed directly via GitHub Pages. To activate, go to your repository settings on GitHub, select 'Pages' and configure the source to the `gh-pages` branch (or `main`/`master` with the `/docs` folder).
 
-### Tecnologias Utilizadas
+### Technologies Used
 - Python 3.x
 - Pandas
 - NumPy
