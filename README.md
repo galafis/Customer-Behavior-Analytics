@@ -1,320 +1,236 @@
-# 📊 Customer Behavior Analytics
+# Customer Behavior Analytics
 
-> Professional project by Gabriel Demetrios Lafis
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB.svg)](https://www.python.org/)
+[![R](https://img.shields.io/badge/R-4.0+-276DC3.svg)](https://www.r-project.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.3+-000000.svg)](https://flask.palletsprojects.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[English](#english) | [Portugues](#portugues)
 
-[English](#english) | [Português](#português)
+---
+
+## Portugues
+
+### Visao Geral
+
+Projeto de analise de comportamento de clientes usando Python e R. Realiza segmentacao de clientes via KMeans (analise RFM — Recency, Frequency, Monetary), previsao de churn com Random Forest, e gera dashboards interativos com Plotly. Inclui uma API REST minima em Flask para consultar dados de clientes.
+
+### Arquitetura
+
+```mermaid
+graph TB
+    subgraph Python["Python - Analise Principal"]
+        CA[customer_analytics.py<br/>Segmentacao RFM + Churn]
+        SRV[server.py<br/>API REST Flask]
+    end
+
+    subgraph R["R - Analise Estatistica"]
+        CR[customer_analysis.R<br/>Segmentacao + Modelagem]
+    end
+
+    subgraph Dados["Dados"]
+        CSV[customer_data.csv<br/>ou dados sinteticos]
+    end
+
+    subgraph Saida["Saida"]
+        DASH[Dashboard HTML<br/>Plotly interativo]
+        API[API JSON<br/>Endpoints REST]
+    end
+
+    CSV --> CA
+    CSV --> SRV
+    CSV --> CR
+    CA --> DASH
+    SRV --> API
+    CR --> DASH
+
+    style Python fill:#e1f5fe
+    style R fill:#f3e5f5
+    style Dados fill:#fff3e0
+    style Saida fill:#e8f5e9
+```
+
+### Funcionalidades
+
+- **Segmentacao RFM**: Agrupa clientes por recencia, frequencia e valor monetario usando KMeans
+- **Previsao de Churn**: Modelo Random Forest para identificar clientes em risco de abandono
+- **Dashboard Interativo**: Graficos 3D, barras, pizza e boxplots via Plotly (salvo como HTML)
+- **API REST**: Endpoints Flask para consulta de clientes, demografias e resumo de compras
+- **Analise em R**: Script alternativo com segmentacao hierarquica, RFM scoring e visualizacoes ggplot2
+- **Dados Sinteticos**: Gera dados automaticamente quando nao ha CSV real disponivel
+
+### Estrutura do Projeto
+
+```
+Customer-Behavior-Analytics/
+├── src/
+│   ├── __init__.py
+│   ├── customer_analytics.py   # Classe principal: RFM, KMeans, churn, dashboard
+│   ├── customer_analysis.R     # Analise estatistica em R
+│   └── server.py               # API REST Flask
+├── tests/
+│   └── test_customer_analytics.py
+├── config/
+│   └── requirements.txt
+├── data/                       # Diretorio para dados CSV (gitignored)
+├── LICENSE
+└── README.md
+```
+
+### Como Executar
+
+```bash
+# Clonar o repositorio
+git clone https://github.com/galafis/Customer-Behavior-Analytics.git
+cd Customer-Behavior-Analytics
+
+# Criar ambiente virtual
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Instalar dependencias
+pip install -r config/requirements.txt
+
+# Executar analise completa (gera dashboard HTML)
+python -m src.customer_analytics
+
+# Executar API REST
+python -m src.server
+```
+
+### Testes
+
+```bash
+python -m pytest tests/ -v
+```
+
+### Tecnologias
+
+| Tecnologia | Uso |
+|------------|-----|
+| Python | Linguagem principal |
+| pandas / NumPy | Processamento de dados |
+| scikit-learn | KMeans, Random Forest, metricas |
+| Plotly | Dashboards interativos |
+| Flask | API REST |
+| R | Analise estatistica alternativa |
 
 ---
 
 ## English
 
-### 🎯 Overview
+### Overview
 
-**Customer Behavior Analytics** is a production-grade Python application complemented by CSS, HTML, JavaScript, R that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+Customer behavior analytics project using Python and R. Performs customer segmentation via KMeans (RFM analysis — Recency, Frequency, Monetary), churn prediction with Random Forest, and generates interactive dashboards with Plotly. Includes a minimal Flask REST API for querying customer data.
 
-The codebase comprises **5,214 lines** of source code organized across **10 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
-- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
-- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
-- **📥 Export Capabilities**: PDF, CSV, and image export for reports
-- **🏗️ Object-Oriented**: 3 core classes with clean architecture
-
-### 🏗️ Architecture
+### Architecture
 
 ```mermaid
 graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
+    subgraph Python["Python - Main Analysis"]
+        CA[customer_analytics.py<br/>RFM Segmentation + Churn]
+        SRV[server.py<br/>Flask REST API]
     end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
+
+    subgraph R["R - Statistical Analysis"]
+        CR[customer_analysis.R<br/>Segmentation + Modeling]
     end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+
+    subgraph Data["Data"]
+        CSV[customer_data.csv<br/>or synthetic data]
+    end
+
+    subgraph Output["Output"]
+        DASH[HTML Dashboard<br/>Interactive Plotly]
+        API[JSON API<br/>REST Endpoints]
+    end
+
+    CSV --> CA
+    CSV --> SRV
+    CSV --> CR
+    CA --> DASH
+    SRV --> API
+    CR --> DASH
+
+    style Python fill:#e1f5fe
+    style R fill:#f3e5f5
+    style Data fill:#fff3e0
+    style Output fill:#e8f5e9
 ```
 
-```mermaid
-classDiagram
-    class ApplicationManager
-    class CustomerBehaviorAnalytics
-    ApplicationManager --> ApplicationManager : uses
-    ApplicationManager --> CustomerBehaviorAnalytics : uses
+### Features
+
+- **RFM Segmentation**: Groups customers by recency, frequency and monetary value using KMeans
+- **Churn Prediction**: Random Forest model to identify customers at risk of leaving
+- **Interactive Dashboard**: 3D scatter, bar, pie and box plots via Plotly (saved as HTML)
+- **REST API**: Flask endpoints for querying customers, demographics and purchase summaries
+- **R Analysis**: Alternative script with hierarchical clustering, RFM scoring and ggplot2 visualizations
+- **Synthetic Data**: Automatically generates data when no real CSV is available
+
+### Project Structure
+
+```
+Customer-Behavior-Analytics/
+├── src/
+│   ├── __init__.py
+│   ├── customer_analytics.py   # Main class: RFM, KMeans, churn, dashboard
+│   ├── customer_analysis.R     # Statistical analysis in R
+│   └── server.py               # Flask REST API
+├── tests/
+│   └── test_customer_analytics.py
+├── config/
+│   └── requirements.txt
+├── data/                       # Directory for CSV data (gitignored)
+├── LICENSE
+└── README.md
 ```
 
-### 🚀 Quick Start
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
+### How to Run
 
 ```bash
 # Clone the repository
 git clone https://github.com/galafis/Customer-Behavior-Analytics.git
 cd Customer-Behavior-Analytics
 
-# Create and activate virtual environment
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r config/requirements.txt
+
+# Run full analysis (generates HTML dashboard)
+python -m src.customer_analytics
+
+# Run REST API
+python -m src.server
 ```
 
-#### Running
+### Tests
 
 ```bash
-# Run the application
-python src/main.py
+python -m pytest tests/ -v
 ```
 
-### 🧪 Testing
+### Technologies
 
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
-
-```
-Customer-Behavior-Analytics/
-├── config/        # Configuration
-│   └── requirements.txt
-├── docs/          # Documentation
-│   └── notebooks/
-├── src/          # Source code
-│   ├── analytics.R
-│   ├── app.js
-│   ├── customer_analysis.R
-│   ├── customer_analytics.py
-│   └── server.py
-├── tests/         # Test suite
-│   └── test_customer_analytics.py
-├── LICENSE
-├── README.md
-├── README_en.md
-└── app.js
-```
-
-### 📊 Performance Metrics
-
-The engine calculates comprehensive performance metrics:
-
-| Metric | Description | Formula |
-|--------|-------------|---------|
-| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
-| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
-| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
-| **Win Rate** | Percentage of profitable trades | Wins / Total |
-| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
-| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
-| **VaR (95%)** | Value at Risk | 5th percentile of returns |
-| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
-
-### 🛠️ Tech Stack
-
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| JavaScript | 2 files | Supporting |
-| HTML | 2 files | Supporting |
-| R | 2 files | Supporting |
-| CSS | 1 files | Supporting |
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+| Technology | Usage |
+|------------|-------|
+| Python | Primary language |
+| pandas / NumPy | Data processing |
+| scikit-learn | KMeans, Random Forest, metrics |
+| Plotly | Interactive dashboards |
+| Flask | REST API |
+| R | Alternative statistical analysis |
 
 ---
 
-## Português
-
-### 🎯 Visão Geral
-
-**Customer Behavior Analytics** é uma aplicação Python de nível profissional, complementada por CSS, HTML, JavaScript, R que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
-
-A base de código compreende **5,214 linhas** de código-fonte organizadas em **10 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
-- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
-- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
-- **📥 Export Capabilities**: PDF, CSV, and image export for reports
-- **🏗️ Object-Oriented**: 3 core classes with clean architecture
-
-### 🏗️ Arquitetura
-
-```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
-```
-
-### 🚀 Início Rápido
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/galafis/Customer-Behavior-Analytics.git
-cd Customer-Behavior-Analytics
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python src/main.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-Customer-Behavior-Analytics/
-├── config/        # Configuration
-│   └── requirements.txt
-├── docs/          # Documentation
-│   └── notebooks/
-├── src/          # Source code
-│   ├── analytics.R
-│   ├── app.js
-│   ├── customer_analysis.R
-│   ├── customer_analytics.py
-│   └── server.py
-├── tests/         # Test suite
-│   └── test_customer_analytics.py
-├── LICENSE
-├── README.md
-├── README_en.md
-└── app.js
-```
-
-### 📊 Performance Metrics
-
-The engine calculates comprehensive performance metrics:
-
-| Metric | Description | Formula |
-|--------|-------------|---------|
-| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
-| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
-| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
-| **Win Rate** | Percentage of profitable trades | Wins / Total |
-| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
-| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
-| **VaR (95%)** | Value at Risk | 5th percentile of returns |
-| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| JavaScript | 2 files | Supporting |
-| HTML | 2 files | Supporting |
-| R | 2 files | Supporting |
-| CSS | 1 files | Supporting |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
+### Autor / Author
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+
+### Licenca / License
+
+MIT License - veja [LICENSE](LICENSE) para detalhes / see [LICENSE](LICENSE) for details.
