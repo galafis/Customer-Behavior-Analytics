@@ -53,12 +53,11 @@ class CustomerBehaviorAnalytics:
 
         # Exemplo de cálculo de métricas RFM (Recency, Frequency, Monetary)
         snapshot_date = self.data['purchase_date'].max() + pd.Timedelta(days=1)
-        rfm = self.data.groupby('customer_id').agg({
-            'purchase_date': lambda date: (snapshot_date - date.max()).days, # Recency
-            'customer_id': 'count', # Frequency
-            'purchase_amount': 'sum' # Monetary
-        })
-        rfm.columns = ['Recency', 'Frequency', 'Monetary']
+        rfm = self.data.groupby('customer_id').agg(
+            Recency=('purchase_date', lambda date: (snapshot_date - date.max()).days),
+            Frequency=('purchase_amount', 'count'),
+            Monetary=('purchase_amount', 'sum')
+        )
         rfm['Recency'] = rfm['Recency'].astype(int)
         rfm['Frequency'] = rfm['Frequency'].astype(int)
         rfm['Monetary'] = rfm['Monetary'].astype(float)
@@ -67,7 +66,7 @@ class CustomerBehaviorAnalytics:
         customer_metrics = self.data.groupby('customer_id').agg(
             total_spent=('purchase_amount', 'sum'),
             avg_purchase_amount=('purchase_amount', 'mean'),
-            num_purchases=('customer_id', 'count'),
+            num_purchases=('purchase_amount', 'count'),
             first_purchase=('purchase_date', 'min'),
             last_purchase=('purchase_date', 'max'),
             age=('age', 'first'),
